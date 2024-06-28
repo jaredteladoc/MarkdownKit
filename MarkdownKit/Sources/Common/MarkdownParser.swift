@@ -7,7 +7,8 @@
 //
 import Foundation
 
-open class MarkdownParser {
+@objc
+open class MarkdownParser : NSObject {
   public struct EnabledElements: OptionSet {
     public let rawValue: Int
 
@@ -108,6 +109,8 @@ open class MarkdownParser {
     self.unescapingElements = [code, unescaping]
     self.customElements = customElements
     self.enabledElements = enabledElements
+    super.init()
+    
     updateDefaultElements()
     updateEscapingElements()
     updateUnescapingElements()
@@ -130,7 +133,7 @@ open class MarkdownParser {
   }
   
   // MARK: Parsing
-  open func parse(_ markdown: String) -> NSAttributedString {
+  @objc open func parse(_ markdown: String) -> NSAttributedString {
     return parse(NSAttributedString(string: markdown))
   }
   
